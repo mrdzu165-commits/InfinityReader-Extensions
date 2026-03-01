@@ -55,6 +55,32 @@ function getBookDetails(bookUrl) {
         });
     }
 
+    return Response.success({
+        title: titleEl ? titleEl.text : "",
+        author: authorEl ? authorEl.text : "",
+        description: descEl ? Html.clean(descEl.html) : "",
+        coverUrl: coverEl ? coverEl.src : (coverEl ? coverEl.attr("src") : ""),
+        chapters: chapters
+    });
+}
+
+function getChapters(bookUrl) {
+    var url = bookUrl.startsWith("http") ? bookUrl : BASE_URL + bookUrl;
+    var resp = fetch(url);
+    if (!resp.ok) return Response.error("Fetch failed");
+
+    var htmlStr = resp.text();
+    var doc = Html.parse(htmlStr);
+
+    var chapterEls = doc.select("ul.list-chapter li a");
+    var chapters = [];
+    for (var i = 0; i < chapterEls.length; i++) {
+        chapters.push({
+            title: chapterEls[i].text,
+            url: chapterEls[i].href
+        });
+    }
+
     // Pagination fetching
     var maxPage = 1;
     var paginationAs = doc.select("ul.pagination li a");
@@ -85,13 +111,7 @@ function getBookDetails(bookUrl) {
         }
     }
 
-    return Response.success({
-        title: titleEl ? titleEl.text : "",
-        author: authorEl ? authorEl.text : "",
-        description: descEl ? Html.clean(descEl.html) : "",
-        coverUrl: coverEl ? coverEl.src : (coverEl ? coverEl.attr("src") : ""),
-        chapters: chapters
-    });
+    return Response.success(chapters);
 }
 
 function getChapterContent(chapterUrl) {
