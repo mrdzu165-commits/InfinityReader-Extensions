@@ -1,3 +1,5 @@
+var BASE_URL = "https://sstruyen.vn";
+
 function getBookList(page, query) {
     var url = "";
     if (query && query.length > 0) {
