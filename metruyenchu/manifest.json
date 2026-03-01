@@ -1,0 +1,11 @@
+{
+    "id": "metruyenchu",
+    "name": "Mê Truyện Chữ",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://metruyencv.com",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ Mê Truyện Chữ (MeTruyenCV)",
+    "type": "novel"
+}

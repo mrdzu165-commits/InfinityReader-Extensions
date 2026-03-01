@@ -1,0 +1,11 @@
+{
+    "id": "wattpad",
+    "name": "Wattpad",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://www.wattpad.com",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ Wattpad (API)",
+    "type": "novel"
+}

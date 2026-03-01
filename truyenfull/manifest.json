@@ -1,0 +1,11 @@
+{
+    "id": "truyenfull",
+    "name": "Truyện Full",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://truyenfull.vn",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ TruyenFull.vn",
+    "type": "novel"
+}

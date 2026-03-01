@@ -1,0 +1,64 @@
+{
+    "extensions": [
+        {
+            "id": "truyenfull",
+            "name": "Truyện Full",
+            "version": 1,
+            "path": "truyenfull/"
+        },
+        {
+            "id": "tangthuvien",
+            "name": "Tàng Thư Viện",
+            "version": 1,
+            "path": "tangthuvien/"
+        },
+        {
+            "id": "sstruyen",
+            "name": "SSTruyện",
+            "version": 1,
+            "path": "sstruyen/"
+        },
+        {
+            "id": "truyenchu",
+            "name": "Truyện Chữ",
+            "version": 1,
+            "path": "truyenchu/"
+        },
+        {
+            "id": "dtruyen",
+            "name": "DTruyen",
+            "version": 1,
+            "path": "dtruyen/"
+        },
+        {
+            "id": "truyenhd",
+            "name": "Truyện HD",
+            "version": 1,
+            "path": "truyenhd/"
+        },
+        {
+            "id": "wikidich",
+            "name": "WikiDịch",
+            "version": 1,
+            "path": "wikidich/"
+        },
+        {
+            "id": "metruyenchu",
+            "name": "Mê Truyện Chữ",
+            "version": 1,
+            "path": "metruyenchu/"
+        },
+        {
+            "id": "wattpad",
+            "name": "Wattpad",
+            "version": 1,
+            "path": "wattpad/"
+        },
+        {
+            "id": "sangtacviet",
+            "name": "Sáng Tác Việt",
+            "version": 1,
+            "path": "sangtacviet/"
+        }
+    ]
+}

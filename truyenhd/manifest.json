@@ -1,0 +1,11 @@
+{
+    "id": "truyenhd",
+    "name": "Truyện HD",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://truyenhd.vn",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ TruyenHD.vn",
+    "type": "novel"
+}

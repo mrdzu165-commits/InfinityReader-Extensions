@@ -1,0 +1,11 @@
+{
+    "id": "sangtacviet",
+    "name": "Sáng Tác Việt",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://sangtacviet.vip",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ SangTacViet.vip",
+    "type": "novel"
+}

@@ -1,0 +1,11 @@
+{
+    "id": "sstruyen",
+    "name": "SSTruyện",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://sstruyen.vn",
+    "icon": "icon.png",
+    "author": "InfinityReader",
+    "description": "Nguồn truyện từ SSTruyen.vn",
+    "type": "novel"
+}
