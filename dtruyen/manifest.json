@@ -1,7 +1,11 @@
-{
-  "name": "TruyenCom",
-  "version": "1.0.0",
-  "author": "Antigravity",
-  "description": "Ngu?n truy?n TruyenCom (T�n cu DTruyen)",
-  "host": "https://truyencom.com"
+﻿{
+    "id": "dtruyen",
+    "name": "DTruyen",
+    "version": 1,
+    "lang": "vi",
+    "baseUrl": "https://truyencom.com",
+    "icon": "icon.png",
+    "author": "Antigravity",
+    "description": "Nguồn truyện từ TruyenCom",
+    "type": "novel"
 }
