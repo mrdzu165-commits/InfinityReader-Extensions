@@ -45,7 +45,7 @@ function getBookDetails(bookUrl) {
     var descEl = doc.selectFirst("div.desc-text");
     var coverEl = doc.selectFirst("div.book img");
 
-    // Basic chapter list extraction (first page only for simple version)
+    // Basic chapter list extraction (page 1)
     var chapterEls = doc.select("ul.list-chapter li a");
     var chapters = [];
     for (var i = 0; i < chapterEls.length; i++) {
@@ -53,6 +53,36 @@ function getBookDetails(bookUrl) {
             title: chapterEls[i].text,
             url: chapterEls[i].href
         });
+    }
+
+    // Pagination fetching
+    var maxPage = 1;
+    var paginationAs = doc.select("ul.pagination li a");
+    for (var i = 0; i < paginationAs.length; i++) {
+        var href = paginationAs[i].href || "";
+        var match = href.match(/trang-(\d+)/);
+        if (match) {
+            var pageNum = parseInt(match[1]);
+            if (pageNum > maxPage) maxPage = pageNum;
+        }
+    }
+
+    // For safety, limit maxPage to avoid timeout (e.g. max 50 pages = ~2500 chapters)
+    if (maxPage > 50) maxPage = 50;
+
+    for (var p = 2; p <= maxPage; p++) {
+        var pUrl = url.replace(/\/$/, "") + "/trang-" + p + "/";
+        var pResp = fetch(pUrl);
+        if (pResp.ok) {
+            var pDoc = Html.parse(pResp.text());
+            var pChapEls = pDoc.select("ul.list-chapter li a");
+            for (var c = 0; c < pChapEls.length; c++) {
+                chapters.push({
+                    title: pChapEls[c].text,
+                    url: pChapEls[c].href
+                });
+            }
+        }
     }
 
     return Response.success({
