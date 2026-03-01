@@ -1,6 +1,10 @@
 function getBookList(page, query) {
     var url = "";
-    if (query && query.length > 0) {
+    if (query && query.startsWith("@filter:")) {
+        // Handle category filters like @filter:truyen-moi/
+        var filterPath = query.replace("@filter:", "");
+        url = BASE_URL + "/danh-sach/" + filterPath + "trang-" + page + "/";
+    } else if (query && query.length > 0) {
         url = BASE_URL + "/tim-kiem/?tukhoa=" + encodeURIComponent(query) + "&page=" + page;
     } else {
         url = BASE_URL + "/danh-sach/truyen-hot/trang-" + page + "/";
@@ -19,13 +23,19 @@ function getBookList(page, query) {
         var authorEl = el.selectFirst(".author");
         var coverEl = el.selectFirst("[data-image]");
 
+        // Extract latest chapter (e.g., "Chương 1234") from .text-info
+        var chapterEl = el.selectFirst(".text-info a");
+        if (!chapterEl) chapterEl = el.selectFirst(".text-info");
+        var latestChapter = chapterEl ? chapterEl.text : "";
+
         if (titleEl) {
             books.push({
                 id: titleEl.href.replace(BASE_URL, ""),
                 title: titleEl.text,
                 author: authorEl ? authorEl.text : "",
                 coverUrl: coverEl ? coverEl.attr("data-image") : "",
-                url: titleEl.href
+                url: titleEl.href,
+                latestChapter: latestChapter
             });
         }
     }
@@ -93,8 +103,9 @@ function getChapters(bookUrl) {
         }
     }
 
-    // For safety, limit maxPage to avoid timeout (e.g. max 50 pages = ~2500 chapters)
-    if (maxPage > 50) maxPage = 50;
+    // Removed the 50-page maxPage safety limit since we now cache chapters in SQlite.
+    // Fetch all chapters no matter how many pages!
+    // if (maxPage > 50) maxPage = 50;
 
     for (var p = 2; p <= maxPage; p++) {
         var pUrl = url.replace(/\/$/, "") + "/trang-" + p + "/";
