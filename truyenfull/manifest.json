@@ -3,9 +3,17 @@
     "name": "Truyện Full",
     "version": 1,
     "lang": "vi",
-    "baseUrl": "https://truyenfull.vn",
+    "baseUrl": "https://truyenfull.vision",
     "icon": "icon.png",
     "author": "InfinityReader",
     "description": "Nguồn truyện từ TruyenFull.vn",
-    "type": "novel"
+    "type": "novel",
+    "categories": {
+        "Truyện Hot": "",
+        "Mới cập nhật": "@filter:truyen-moi/",
+        "Truyện Full": "@filter:truyen-full/",
+        "Tiên Hiệp": "@filter:tien-hiep/",
+        "Kiếm Hiệp": "@filter:kiem-hiep/",
+        "Ngôn Tình": "@filter:ngon-tinh/"
+    }
 }
