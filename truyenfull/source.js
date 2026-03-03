@@ -1,9 +1,13 @@
 function getBookList(page, query) {
     var url = "";
     if (query && query.startsWith("@filter:")) {
-        // Handle category filters like @filter:truyen-moi/
+        // Handle category filters like @filter:danh-sach/truyen-moi/
         var filterPath = query.replace("@filter:", "");
-        url = BASE_URL + "/danh-sach/" + filterPath + "trang-" + page + "/";
+        if (filterPath === "") {
+            url = BASE_URL + "/danh-sach/truyen-hot/trang-" + page + "/";
+        } else {
+            url = BASE_URL + "/" + filterPath + "trang-" + page + "/";
+        }
     } else if (query && query.length > 0) {
         url = BASE_URL + "/tim-kiem/?tukhoa=" + encodeURIComponent(query) + "&page=" + page;
     } else {
