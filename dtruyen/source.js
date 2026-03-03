@@ -3,7 +3,7 @@
 function getBookList(page, query) {
     var url = "";
     if (query && query.indexOf("@filter:") !== -1) {
-        var category = query.split("@filter:category:")[1];
+        var category = query.split("@filter:")[1];
         if (category) {
             if (page === 1) {
                 url = BASE_URL + category;
@@ -60,6 +60,19 @@ function getBookList(page, query) {
             cover = coverEl.attr("data-desk-image") || coverEl.attr("data-image") || coverEl.attr("lazysrc") || coverEl.src || coverEl.attr("src");
         }
 
+        var chapterCount = "";
+        var allAuthors = el.select(".author");
+        if (allAuthors && allAuthors.length > 0) {
+            for (var k = 0; k < allAuthors.length; k++) {
+                var aText = allAuthors[k].text.trim();
+                // Match "X chương"
+                if (aText.toLowerCase().indexOf("chương") !== -1) {
+                    chapterCount = aText;
+                    break;
+                }
+            }
+        }
+
         var id = bookUrl;
         if (id.indexOf(BASE_URL) === 0) {
             id = id.substring(BASE_URL.length);
@@ -70,7 +83,8 @@ function getBookList(page, query) {
             title: title,
             author: author,
             coverUrl: cover,
-            url: bookUrl
+            url: bookUrl,
+            chapterCount: chapterCount
         });
     }
 

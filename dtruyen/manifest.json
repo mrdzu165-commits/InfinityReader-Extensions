@@ -1,64 +1,40 @@
 ﻿{
     "id": "dtruyen",
     "name": "DTruyen",
-    "version": 2,
+    "version": 3,
     "lang": "vi",
     "baseUrl": "https://truyencom.com",
     "icon": "icon.png",
     "author": "Antigravity",
     "description": "Nguồn truyện từ TruyenCom",
     "type": "novel",
-    "filters": [
-        {
-            "id": "category",
-            "name": "Thể loại",
-            "type": "select",
-            "values": [
-                {
-                    "name": "Tất cả",
-                    "value": ""
-                },
-                {
-                    "name": "Tiên Hiệp",
-                    "value": "/truyen-tien-hiep/"
-                },
-                {
-                    "name": "Kiếm Hiệp",
-                    "value": "/truyen-kiem-hiep/"
-                },
-                {
-                    "name": "Ngôn Tình",
-                    "value": "/truyen-ngon-tinh/"
-                },
-                {
-                    "name": "Đô Thị",
-                    "value": "/truyen-do-thi/"
-                },
-                {
-                    "name": "Huyền Huyễn",
-                    "value": "/truyen-huyen-huyen/"
-                },
-                {
-                    "name": "Dị Giới",
-                    "value": "/truyen-di-gioi/"
-                },
-                {
-                    "name": "Võng Du",
-                    "value": "/truyen-vong-du/"
-                },
-                {
-                    "name": "Khoa Huyễn",
-                    "value": "/truyen-khoa-huyen/"
-                },
-                {
-                    "name": "Hệ Thống",
-                    "value": "/truyen-he-thong/"
-                },
-                {
-                    "name": "Đam Mỹ",
-                    "value": "/truyen-dam-my/"
-                }
-            ]
-        }
-    ]
+    "categories": {
+        "Truyện Hot": "@filter:/truyen-hot/",
+        "Truyện Full": "@filter:/truyen-full/",
+        "Truyện Mới Cập Nhật": "@filter:/truyen-moi-cap-nhat/",
+        "Truyện Mới Đăng": "@filter:/truyen-moi-dang/",
+        "Tiên Hiệp": "@filter:/truyen-tien-hiep/",
+        "Kiếm Hiệp": "@filter:/truyen-kiem-hiep/",
+        "Ngôn Tình": "@filter:/truyen-ngon-tinh/",
+        "Đô Thị": "@filter:/truyen-do-thi/",
+        "Huyền Huyễn": "@filter:/truyen-huyen-huyen/",
+        "Dị Giới": "@filter:/truyen-di-gioi/",
+        "Võng Du": "@filter:/truyen-vong-du/",
+        "Khoa Huyễn": "@filter:/truyen-khoa-huyen/",
+        "Hệ Thống": "@filter:/truyen-he-thong/",
+        "Đam Mỹ": "@filter:/truyen-dam-my/",
+        "Bách Hợp": "@filter:/truyen-bach-hop/",
+        "Quan Trường": "@filter:/truyen-quan-truong/",
+        "Xuyên Không": "@filter:/truyen-xuyen-khong/",
+        "Trinh Thám": "@filter:/truyen-trinh-tham/",
+        "Linh Dị": "@filter:/truyen-linh-di/",
+        "Ngược": "@filter:/truyen-nguoc/",
+        "Sủng": "@filter:/truyen-sung/",
+        "Cung Đấu": "@filter:/truyen-cung-dau/",
+        "Nữ Cường": "@filter:/truyen-nu-cuong/",
+        "Gia Đấu": "@filter:/truyen-gia-dau/",
+        "Điền Văn": "@filter:/truyen-dien-van/",
+        "Xuyên Nhanh": "@filter:/truyen-xuyen-nhanh/",
+        "Hiện Đại": "@filter:/truyen-hien-dai/"
+    }
 }
