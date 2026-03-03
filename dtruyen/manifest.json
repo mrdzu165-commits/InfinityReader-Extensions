@@ -1,11 +1,64 @@
 ﻿{
     "id": "dtruyen",
     "name": "DTruyen",
-    "version": 1,
+    "version": 2,
     "lang": "vi",
     "baseUrl": "https://truyencom.com",
     "icon": "icon.png",
     "author": "Antigravity",
     "description": "Nguồn truyện từ TruyenCom",
-    "type": "novel"
+    "type": "novel",
+    "filters": [
+        {
+            "id": "category",
+            "name": "Thể loại",
+            "type": "select",
+            "values": [
+                {
+                    "name": "Tất cả",
+                    "value": ""
+                },
+                {
+                    "name": "Tiên Hiệp",
+                    "value": "/truyen-tien-hiep/"
+                },
+                {
+                    "name": "Kiếm Hiệp",
+                    "value": "/truyen-kiem-hiep/"
+                },
+                {
+                    "name": "Ngôn Tình",
+                    "value": "/truyen-ngon-tinh/"
+                },
+                {
+                    "name": "Đô Thị",
+                    "value": "/truyen-do-thi/"
+                },
+                {
+                    "name": "Huyền Huyễn",
+                    "value": "/truyen-huyen-huyen/"
+                },
+                {
+                    "name": "Dị Giới",
+                    "value": "/truyen-di-gioi/"
+                },
+                {
+                    "name": "Võng Du",
+                    "value": "/truyen-vong-du/"
+                },
+                {
+                    "name": "Khoa Huyễn",
+                    "value": "/truyen-khoa-huyen/"
+                },
+                {
+                    "name": "Hệ Thống",
+                    "value": "/truyen-he-thong/"
+                },
+                {
+                    "name": "Đam Mỹ",
+                    "value": "/truyen-dam-my/"
+                }
+            ]
+        }
+    ]
 }

@@ -21,7 +21,8 @@ function getBookList(page, query) {
     var books = [];
 
     for (var i = 0; i < items.length; i++) {
-        var el = Html.parse(items[i].html);
+        var itemHtml = typeof items[i].html === 'function' ? items[i].html() : (items[i].html || items[i].htmlStr || "");
+        var el = Html.parse(itemHtml);
         var titleEl = el.selectFirst("h3");
         var aEl = el.selectFirst("a");
         var coverEl = el.selectFirst("img");
@@ -77,9 +78,9 @@ function getBookDetails(bookUrl) {
     var descEl = doc.selectFirst("#gioithieu .scrolltext") || doc.selectFirst(".scrolltext") || doc.selectFirst(".wrap-detail.pc .content1");
 
     // Clean up description
-    var descHtml = descEl ? (descEl.html || descEl.htmlStr || "") : "";
+    var descHtml = descEl ? (typeof descEl.html === 'function' ? descEl.html() : (descEl.html || descEl.htmlStr || "")) : "";
+    descHtml = descHtml.replace(/<div[^>]*class="[^"]*info[^"]*"[^>]*>[\s\S]*?<\/div>/gi, "");
     var descParsed = Html.parse(descHtml);
-    descParsed.remove("div.info");
 
     var coverUrl = "";
     if (coverEl) {
@@ -155,33 +156,44 @@ function getChapters(bookUrl) {
 }
 
 function getChapterContent(chapterUrl) {
-    var url = chapterUrl.startsWith("http") ? chapterUrl : BASE_URL + chapterUrl;
-    var resp = fetch(url);
+    var url = chapterUrl.startsWith("http") ? chapterUrl : BASE_URL + (chapterUrl.startsWith("/") ? "" : "/") + chapterUrl;
+    var resp = fetch(url, {
+        headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+    });
+
     if (!resp.ok) return Response.error("Fetch failed");
 
-    var doc = Html.parse(resp.text());
+    var htmlStr = resp.text();
+    var doc = Html.parse(htmlStr);
 
     var titleEl = doc.selectFirst("h2.current-chapter") || doc.selectFirst("h1");
-
-    // Clean-At-Source
-    doc.remove("noscript, script, iframe, div.ads-responsive, [style*=font-size], a, ins");
 
     var contentEl = doc.selectFirst("div.truyen") || doc.selectFirst("#vungdoc") || doc.selectFirst("div.vung-doc") || doc.selectFirst("div.content.container1") || doc.selectFirst("div.content");
 
     var contentHtml = "";
     if (contentEl) {
-        contentHtml = contentEl.html || contentEl.htmlStr || "";
+        contentHtml = typeof contentEl.html === 'function' ? contentEl.html() : (contentEl.html || contentEl.htmlStr || "");
     } else {
         // Last resort fallback
         var wrap = doc.selectFirst(".vung-doc") || doc.selectFirst("body");
-        if (wrap) contentHtml = wrap.html || wrap.htmlStr || "";
+        if (wrap) contentHtml = typeof wrap.html === 'function' ? wrap.html() : (wrap.html || wrap.htmlStr || "");
     }
 
     if (!contentHtml || contentHtml.length < 50) {
         return Response.error("Content not found or empty (Length: " + (contentHtml ? contentHtml.length : 0) + ")");
     }
 
-    var cleaned = Html.clean(contentHtml);
+    // Attempt to manually clean
+    contentHtml = contentHtml.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "");
+    contentHtml = contentHtml.replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, "");
+    contentHtml = contentHtml.replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, "");
+    contentHtml = contentHtml.replace(/<div[^>]*class="[^"]*ads[^"]*"[^>]*>[\s\S]*?<\/div>/gi, "");
+    contentHtml = contentHtml.replace(/<a[^>]*>[\s\S]*?<\/a>/gi, "");
+    contentHtml = contentHtml.replace(/<ins[^>]*>[\s\S]*?<\/ins>/gi, "");
+
+    var cleaned = Html.clean ? Html.clean(contentHtml) : contentHtml;
 
     if (typeof cleanVietnameseAds === "function") cleaned = cleanVietnameseAds(cleaned);
     if (typeof normalizeText === "function") cleaned = normalizeText(cleaned);

@@ -1,9 +1,9 @@
 {
     "id": "sstruyen",
     "name": "SSTruyện",
-    "version": 1,
+    "version": 2,
     "lang": "vi",
-    "baseUrl": "https://sstruyen.vn",
+    "baseUrl": "https://sstruyen.com.vn",
     "icon": "icon.png",
     "author": "InfinityReader",
     "description": "Nguồn truyện từ SSTruyen.vn",
