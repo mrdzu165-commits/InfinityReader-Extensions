@@ -7,14 +7,14 @@ function getBookList(page, query) {
             var filterPath = query.substring(8);
             url = BASE_URL + "/" + filterPath + (page > 1 ? "?page=" + page : "");
         } else {
-            url = BASE_URL + "/tim-kiem?keyword=" + encodeURIComponent(query) + "&page=" + page;
+            url = BASE_URL + "/tim-kiem?s=" + encodeURIComponent(query) + "&page=" + page;
         }
     } else {
         url = BASE_URL + "/danh-sach/truyen-hot" + (page > 1 ? "?page=" + page : "");
     }
 
     var resp = fetch(url);
-    if (!resp.ok) return Response.error("Fetch failed");
+    if (!resp.ok) return Response.success([]);
 
     var doc = Html.parse(resp.text());
     var items = doc.select(".item");
@@ -26,13 +26,13 @@ function getBookList(page, query) {
         var aEl = el.selectFirst("a");
         var coverEl = el.selectFirst("img");
 
-        if (titleEl && aEl) {
-            var author = "";
-            var authorEl = el.selectFirst("p.line a");
-            if (authorEl) author = authorEl.text;
+        var author = "";
+        var authorEl = el.selectFirst("p.line a");
+        if (authorEl) author = authorEl.text;
 
-            var chapterCount = "";
-            var pLines = el.select("p.line");
+        var chapterCount = "";
+        var pLines = el.select("p.line");
+        if (pLines) {
             for (var j = 0; j < pLines.length; j++) {
                 var pText = pLines[j].text;
                 if (pText.indexOf("Số chương") > -1) {
@@ -40,18 +40,23 @@ function getBookList(page, query) {
                     break;
                 }
             }
+        }
 
-            var coverUrl = coverEl ? (coverEl.src || coverEl.attr("src") || "") : "";
+        if (titleEl && aEl) {
+            var coverUrl = "";
+            if (coverEl) {
+                coverUrl = coverEl.attr("data-pagespeed-high-res-src") || coverEl.attr("data-src") || coverEl.attr("src") || coverEl.src || "";
+            }
             if (coverUrl && !coverUrl.startsWith("http")) {
                 coverUrl = BASE_URL + (coverUrl.startsWith("/") ? "" : "/") + coverUrl;
             }
 
             books.push({
-                id: aEl.href.replace(BASE_URL, "").replace("sstruyen.com.vn", ""),
-                title: titleEl.text,
+                id: aEl.attr("href").replace(BASE_URL, "").replace("sstruyen.com.vn", "").replace("sstruyen.com", ""),
+                title: titleEl.text || "",
                 author: author,
                 coverUrl: coverUrl,
-                url: aEl.href.replace("sstruyen.com", "sstruyen.com.vn"),
+                url: aEl.attr("href").replace("sstruyen.com", "sstruyen.com.vn"),
                 latestChapter: chapterCount ? (chapterCount + " chương") : ""
             });
         }
@@ -67,62 +72,26 @@ function getBookDetails(bookUrl) {
     var htmlStr = resp.text();
     var doc = Html.parse(htmlStr);
 
-    var titleEl = doc.selectFirst("h1[itemprop=name]") || doc.selectFirst("h1.title");
-    var coverEl = doc.selectFirst(".wrap-detail.pc img") || doc.selectFirst(".content img");
-    var descEl = doc.selectFirst("#gioithieu .scrolltext") || doc.selectFirst(".wrap-detail.pc .content1");
+    var titleEl = doc.selectFirst("h1[itemprop=name]") || doc.selectFirst("h1.title") || doc.selectFirst("h1");
+    var coverEl = doc.selectFirst("img[itemprop=image]") || doc.selectFirst(".book-info-pic img") || doc.selectFirst(".wrap-detail.pc img");
+    var descEl = doc.selectFirst("#gioithieu .scrolltext") || doc.selectFirst(".scrolltext") || doc.selectFirst(".wrap-detail.pc .content1");
 
-    // Clean up description if info is embedded
-    var descParsed = Html.parse(descEl ? descEl.htmlStr : "");
+    // Clean up description
+    var descHtml = descEl ? (descEl.html || descEl.htmlStr || "") : "";
+    var descParsed = Html.parse(descHtml);
     descParsed.remove("div.info");
-
-    var chapters = [];
-    var chapterEls = doc.select("#chapter-list ul li a");
-    if (chapterEls.length === 0) chapterEls = doc.select("div.list-chap ul li a");
-    for (var i = 0; i < chapterEls.length; i++) {
-        chapters.push({
-            title: chapterEls[i].text,
-            url: chapterEls[i].href.replace("sstruyen.com", "sstruyen.com.vn")
-        });
-    }
-
-    var author = "";
-    var infoEls = doc.select(".info ul li");
-    for (var i = 0; i < infoEls.length; i++) {
-        var text = infoEls[i].text;
-        if (text.indexOf("Tác giả") > -1) {
-            var aEl = Html.parse(infoEls[i].html).selectFirst("a");
-            if (aEl) author = aEl.text;
-        }
-    }
 
     var coverUrl = "";
     if (coverEl) {
-        coverUrl = coverEl.attr("data-pagespeed-high-res-src") || coverEl.src || coverEl.attr("src") || "";
+        coverUrl = coverEl.attr("data-pagespeed-high-res-src") || coverEl.attr("data-src") || coverEl.attr("src") || coverEl.src || "";
     }
     if (coverUrl && !coverUrl.startsWith("http")) {
         coverUrl = BASE_URL + (coverUrl.startsWith("/") ? "" : "/") + coverUrl;
     }
 
-    return Response.success({
-        title: titleEl ? titleEl.text : "",
-        author: author,
-        description: Html.clean(descParsed.htmlStr),
-        coverUrl: coverUrl,
-        chapters: chapters
-    });
-}
-
-function getChapters(bookUrl) {
-    var url = bookUrl.startsWith("http") ? bookUrl : BASE_URL + bookUrl;
-    var resp = fetch(url);
-    if (!resp.ok) return Response.error("Fetch failed");
-
-    var htmlStr = resp.text();
-    var doc = Html.parse(htmlStr);
-
     var chapters = [];
-    var maxPage = 1;
     var bookId = "";
+    var maxPage = 1;
 
     var match = htmlStr.match(/var rid\s*=\s*'(\d+)'/);
     if (match) bookId = match[1];
@@ -144,7 +113,7 @@ function getChapters(bookUrl) {
     for (var i = 0; i < chapterEls.length; i++) {
         chapters.push({
             title: chapterEls[i].text,
-            url: chapterEls[i].href.replace("sstruyen.com", "sstruyen.com.vn")
+            url: chapterEls[i].attr("href").replace("sstruyen.com", "sstruyen.com.vn")
         });
     }
 
@@ -164,7 +133,7 @@ function getChapters(bookUrl) {
                     for (var j = 0; j < pEls.length; j++) {
                         chapters.push({
                             title: pEls[j].text,
-                            url: pEls[j].href.replace("sstruyen.com", "sstruyen.com.vn")
+                            url: pEls[j].attr("href").replace("sstruyen.com", "sstruyen.com.vn")
                         });
                     }
                 } catch (e) { }
@@ -172,7 +141,17 @@ function getChapters(bookUrl) {
         }
     }
 
-    return Response.success(chapters);
+    return Response.success({
+        title: titleEl ? titleEl.text : "",
+        author: "",
+        description: descParsed.clean ? descParsed.clean() : descParsed.htmlStr,
+        coverUrl: coverUrl,
+        chapters: chapters
+    });
+}
+
+function getChapters(bookUrl) {
+    return getBookDetails(bookUrl);
 }
 
 function getChapterContent(chapterUrl) {
@@ -182,20 +161,33 @@ function getChapterContent(chapterUrl) {
 
     var doc = Html.parse(resp.text());
 
+    var titleEl = doc.selectFirst("h2.current-chapter") || doc.selectFirst("h1");
+
     // Clean-At-Source
     doc.remove("noscript, script, iframe, div.ads-responsive, [style*=font-size], a, ins");
 
-    var contentEl = doc.selectFirst("div.truyen") || doc.selectFirst("div.content.container1") || doc.selectFirst("div.content");
-    if (!contentEl) return Response.error("Content not found");
+    var contentEl = doc.selectFirst("div.truyen") || doc.selectFirst("#vungdoc") || doc.selectFirst("div.vung-doc") || doc.selectFirst("div.content.container1") || doc.selectFirst("div.content");
 
-    var cleaned = Html.clean(contentEl.html);
+    var contentHtml = "";
+    if (contentEl) {
+        contentHtml = contentEl.html || contentEl.htmlStr || "";
+    } else {
+        // Last resort fallback
+        var wrap = doc.selectFirst(".vung-doc") || doc.selectFirst("body");
+        if (wrap) contentHtml = wrap.html || wrap.htmlStr || "";
+    }
+
+    if (!contentHtml || contentHtml.length < 50) {
+        return Response.error("Content not found or empty (Length: " + (contentHtml ? contentHtml.length : 0) + ")");
+    }
+
+    var cleaned = Html.clean(contentHtml);
 
     if (typeof cleanVietnameseAds === "function") cleaned = cleanVietnameseAds(cleaned);
     if (typeof normalizeText === "function") cleaned = normalizeText(cleaned);
 
     return Response.success({
-        title: "",
+        title: titleEl ? titleEl.text : "",
         content: cleaned
     });
 }
-
