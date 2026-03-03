@@ -27,12 +27,32 @@ function getBookList(page, query) {
         var coverEl = el.selectFirst("img");
 
         if (titleEl && aEl) {
+            var author = "";
+            var authorEl = el.selectFirst("p.line a");
+            if (authorEl) author = authorEl.text;
+
+            var chapterCount = "";
+            var pLines = el.select("p.line");
+            for (var j = 0; j < pLines.length; j++) {
+                var pText = pLines[j].text;
+                if (pText.indexOf("Số chương") > -1) {
+                    chapterCount = pText.replace("Số chương:", "").trim();
+                    break;
+                }
+            }
+
+            var coverUrl = coverEl ? (coverEl.src || coverEl.attr("src") || "") : "";
+            if (coverUrl && !coverUrl.startsWith("http")) {
+                coverUrl = BASE_URL + (coverUrl.startsWith("/") ? "" : "/") + coverUrl;
+            }
+
             books.push({
                 id: aEl.href.replace(BASE_URL, "").replace("sstruyen.com.vn", ""),
                 title: titleEl.text,
-                author: "",
-                coverUrl: coverEl ? (coverEl.src || coverEl.attr("src") || "") : "",
-                url: aEl.href.replace("sstruyen.com", "sstruyen.com.vn")
+                author: author,
+                coverUrl: coverUrl,
+                url: aEl.href.replace("sstruyen.com", "sstruyen.com.vn"),
+                latestChapter: chapterCount ? (chapterCount + " chương") : ""
             });
         }
     }
@@ -78,6 +98,9 @@ function getBookDetails(bookUrl) {
     var coverUrl = "";
     if (coverEl) {
         coverUrl = coverEl.attr("data-pagespeed-high-res-src") || coverEl.src || coverEl.attr("src") || "";
+    }
+    if (coverUrl && !coverUrl.startsWith("http")) {
+        coverUrl = BASE_URL + (coverUrl.startsWith("/") ? "" : "/") + coverUrl;
     }
 
     return Response.success({
