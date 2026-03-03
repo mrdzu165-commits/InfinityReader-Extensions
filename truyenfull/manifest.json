@@ -12,8 +12,8 @@
         "Truyện Hot": "",
         "Mới cập nhật": "@filter:truyen-moi/",
         "Truyện Full": "@filter:truyen-full/",
-        "Tiên Hiệp": "@filter:tien-hiep/",
-        "Kiếm Hiệp": "@filter:kiem-hiep/",
-        "Ngôn Tình": "@filter:ngon-tinh/"
+        "Tiên Hiệp": "@filter:tien-hiep-hay/",
+        "Kiếm Hiệp": "@filter:kiem-hiep-hay/",
+        "Ngôn Tình": "@filter:ngon-tinh-hay/"
     }
 }
