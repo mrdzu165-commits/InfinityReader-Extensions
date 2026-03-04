@@ -7,12 +7,6 @@
             "path": "truyenfull/"
         },
         {
-            "id": "tangthuvien",
-            "name": "Tàng Thư Viện",
-            "version": 1,
-            "path": "tangthuvien/"
-        },
-        {
             "id": "sstruyen",
             "name": "SSTruyện",
             "version": 1,
@@ -90,18 +84,6 @@
             "path": "truyenhd/"
         },
         {
-            "id": "wikidich",
-            "name": "WikiDịch",
-            "version": 1,
-            "path": "wikidich/"
-        },
-        {
-            "id": "metruyenchu",
-            "name": "Mê Truyện Chữ",
-            "version": 1,
-            "path": "metruyenchu/"
-        },
-        {
             "id": "wattpad",
             "name": "Wattpad",
             "version": 1,
@@ -112,6 +94,20 @@
             "name": "Sáng Tác Việt",
             "version": 1,
             "path": "sangtacviet/"
+        },
+        {
+            "id": "truyenhdv",
+            "name": "Truyện HDV",
+            "version": 1,
+            "path": "truyenhdv/",
+            "categories": {
+                "Đam Mỹ": "@filter:/keyword/dam-my/",
+                "Tiên Hiệp": "@filter:/keyword/tien-hiep/",
+                "Ngôn Tình": "@filter:/keyword/ngon-tinh/",
+                "Xuyên Không": "@filter:/keyword/xuyen-khong/",
+                "Sủng": "@filter:/keyword/sung/",
+                "Huyền Huyễn": "@filter:/keyword/huyen-huyen/"
+            }
         }
     ]
 }
