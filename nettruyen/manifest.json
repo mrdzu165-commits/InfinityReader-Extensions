@@ -1,0 +1,70 @@
+{
+    "id": "nettruyen_v1",
+    "name": "NetTruyen",
+    "version": 1,
+    "description": "Nguồn truyện nettruyen.com.vn",
+    "author": "InfinityReader",
+    "icon": "icon.png",
+    "language": "vi",
+    "type": "novel",
+    "sourceUrl": "https://nettruyen.com.vn",
+    "source": "source.js",
+    "categories": [
+        {
+            "name": "Mới Cập Nhật",
+            "value": ""
+        },
+        {
+            "name": "Truyện Mới",
+            "value": "@filter:/moi-nhat.html"
+        },
+        {
+            "name": "Truyện Hot",
+            "value": "@filter:/xem-nhieu.html"
+        },
+        {
+            "name": "Truyện Full",
+            "value": "@filter:/truyen-full.html"
+        },
+        {
+            "name": "Truyện Dịch",
+            "value": "@filter:/truyen-dich.html"
+        },
+        {
+            "name": "Truyện Convert",
+            "value": "@filter:/truyen-convert.html"
+        },
+        {
+            "name": "Ngôn Tình",
+            "value": "@filter:/the-loai/ngon-tinh.html"
+        },
+        {
+            "name": "Đô Thị",
+            "value": "@filter:/the-loai/do-thi.html"
+        },
+        {
+            "name": "Tiên Hiệp",
+            "value": "@filter:/the-loai/tien-hiep.html"
+        },
+        {
+            "name": "Xuyên Không",
+            "value": "@filter:/the-loai/xuyen-khong.html"
+        },
+        {
+            "name": "Dị Giới",
+            "value": "@filter:/the-loai/di-gioi.html"
+        },
+        {
+            "name": "Kiếm Hiệp",
+            "value": "@filter:/the-loai/kiem-hiep.html"
+        },
+        {
+            "name": "Võng Du",
+            "value": "@filter:/the-loai/vong-du.html"
+        },
+        {
+            "name": "Huyền Huyễn",
+            "value": "@filter:/the-loai/huyen-huyen.html"
+        }
+    ]
+}

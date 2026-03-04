@@ -147,6 +147,12 @@
                 "Xuyên Không": "@filter:keyword/xuyen-khong/",
                 "Xuyên Nhanh": "@filter:keyword/xuyen-nhanh/"
             }
+        },
+        {
+            "id": "nettruyen_v1",
+            "name": "NetTruyen",
+            "version": 1,
+            "path": "nettruyen/"
         }
     ]
 }
