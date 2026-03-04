@@ -149,9 +149,9 @@
             }
         },
         {
-            "id": "nettruyen_v1",
+            "id": "nettruyen",
             "name": "NetTruyen",
-            "version": 1,
+            "version": 3,
             "path": "nettruyen/"
         }
     ]

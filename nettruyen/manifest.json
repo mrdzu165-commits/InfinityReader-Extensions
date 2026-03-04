@@ -1,7 +1,7 @@
 {
-    "id": "nettruyen_v1",
+    "id": "nettruyen",
     "name": "NetTruyen",
-    "version": 2,
+    "version": 3,
     "description": "Nguồn truyện nettruyen.com.vn",
     "author": "InfinityReader",
     "icon": "icon.png",
@@ -10,7 +10,7 @@
     "baseUrl": "https://nettruyen.com.vn",
     "source": "source.js",
     "categories": {
-        "Mới Cập Nhật": "",
+        "Mới Cập Nhật": "@filter:/",
         "Truyện Mới": "@filter:/moi-nhat.html",
         "Truyện Hot": "@filter:/xem-nhieu.html",
         "Truyện Full": "@filter:/truyen-full.html",
