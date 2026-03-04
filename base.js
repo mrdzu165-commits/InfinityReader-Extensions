@@ -10,13 +10,11 @@ function cleanVietnameseAds(text) {
         /(Bạn đang đọc truyện được copy tại|Nguồn truyện|Truyện được lấy tại)[^<>\n]+/ig,
         /truyenfull\.com/ig,
         /truyenfull\.vn/ig,
-        /tangthuvien\.vn/ig,
         /sstruyen\.com/ig,
         /dtruyen\.com/ig,
         /metruyenchu\.com/ig,
         /truyenchu\.vn/ig,
         /wattpad\.com/ig,
-        /wikidich\.com/ig,
         /sangtacviet\.com/ig
     ];
 

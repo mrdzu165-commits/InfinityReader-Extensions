@@ -143,7 +143,7 @@ function getChapterContent(url) {
     htmlStr = htmlStr.replace(/\r?\n/g, "<br />");
     var doc = Html.parse(htmlStr);
 
-    var contentEl = doc.selectFirst(".box-chap");
+    var contentEl = doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c");
     if (!contentEl) return Response.error("Content not found");
 
     // Clean internal elements before cleaning HTML string

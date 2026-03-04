@@ -3,9 +3,9 @@
     "name": "Truyện Chữ",
     "version": 1,
     "lang": "vi",
-    "baseUrl": "https://metruyenchu.vn",
+    "baseUrl": "https://truyenchu.com.vn",
     "icon": "icon.png",
     "author": "InfinityReader",
-    "description": "Nguồn truyện từ Truyện Chữ (MeTruyenChu)",
+    "description": "Nguồn truyện từ Truyện Chữ (TruyenChu.com.vn)",
     "type": "novel"
 }
