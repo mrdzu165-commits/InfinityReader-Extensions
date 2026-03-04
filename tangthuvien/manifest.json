@@ -1,7 +1,7 @@
 {
     "id": "tangthuvien",
     "name": "Tàng Thư Viện",
-    "version": 2,
+    "version": 3,
     "lang": "vi",
     "baseUrl": "https://truyen.tangthuvien.vn",
     "icon": "icon.png",
