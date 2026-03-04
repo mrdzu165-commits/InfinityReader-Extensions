@@ -7,6 +7,7 @@ function getBookList(page, query) {
 
     if (query && query.indexOf("@filter:") !== -1) {
         var category = query.split("@filter:")[1];
+        if (category.indexOf("/") !== 0) category = "/" + category;
         url = BASE_URL + category;
         if (page > 1) {
             url += "page/" + page + "/";
@@ -171,7 +172,6 @@ function getChapterContent(url) {
 
     var cleaned = Html.clean(content.html);
 
-    // Use helper functions from base.js if they exist in context
     if (typeof cleanVietnameseAds === "function") cleaned = cleanVietnameseAds(cleaned);
     if (typeof normalizeText === "function") cleaned = normalizeText(cleaned);
 
