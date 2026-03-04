@@ -19,7 +19,6 @@ function getBookList(page, query) {
         }
         url += "?title=" + encodeURIComponent(query);
     } else {
-        // Use API for home/new list
         url = API_URL + "/wp-json/v1/app/cache/book?slug=all&filter=new-chap&time=month&type=ticket&post=9&page=" + page;
         isApi = true;
     }
@@ -42,11 +41,11 @@ function getBookList(page, query) {
         return Response.success(books);
     } else {
         var doc = Html.parse(resp.text());
-        var items = doc.select(".theloai-thumlist li, .list-truyen .row");
+        var items = doc.select(".theloai-thumlist li, .list-truyen .row, .list-truyen .col-md-3");
         var books = [];
         for (var i = 0; i < items.length; i++) {
             var el = items[i];
-            var titleEl = el.selectFirst("h2 a, h3 a, a.truyen-title");
+            var titleEl = el.selectFirst("h2 a, h3 a, a.truyen-title, .truyen-title a");
             if (!titleEl) continue;
 
             var title = titleEl.text.trim();
@@ -101,7 +100,7 @@ function getBookDetails(id) {
         if (cover && cover.indexOf("/") === 0 && cover.indexOf("//") !== 0) cover = BASE_URL + cover;
     }
 
-    var descEl = doc.selectFirst(".excerpt-full, .excerpt-collapse, .keywords");
+    var descEl = doc.selectFirst(".excerpt-full, .excerpt-collapse, .keywords, .desc-text");
     var description = descEl ? Html.clean(descEl.html) : "";
 
     var titleTag = doc.selectFirst("title");
@@ -127,16 +126,18 @@ function getBookDetails(id) {
     if (bundleId) {
         var chapResp = fetch(API_URL + "/wp-json/v1/app/cache/truyen/dsc?ID=" + bundleId + "&page=1&limit=2000");
         if (chapResp.ok) {
-            var chapJson = JSON.parse(chapResp.text());
-            if (Array.isArray(chapJson)) {
-                var bookSlug = id.split("/").filter(Boolean).pop();
-                chapters = chapJson.map(function (c) {
-                    return {
-                        title: c.post_title,
-                        url: "/truyen/" + bookSlug + "/chap/" + c.post_name + "/"
-                    };
-                });
-            }
+            try {
+                var chapJson = JSON.parse(chapResp.text());
+                if (Array.isArray(chapJson)) {
+                    var bookSlug = id.split("/").filter(Boolean).pop();
+                    chapters = chapJson.map(function (c) {
+                        return {
+                            title: c.post_title,
+                            url: "/truyen/" + bookSlug + "/chap/" + c.post_name + "/"
+                        };
+                    });
+                }
+            } catch (e) { }
         }
     }
 
@@ -164,9 +165,11 @@ function getChapterContent(url) {
     if (!content) return Response.error("Content not found");
 
     var ads = content.select(".ads-content-1, .ads-content-2, .ads-content-3, script, style");
-    if (ads) {
+    if (ads && ads.length > 0) {
         for (var i = 0; i < ads.length; i++) {
-            ads[i].remove();
+            if (ads[i] && typeof ads[i].remove === 'function') {
+                ads[i].remove();
+            }
         }
     }
 
