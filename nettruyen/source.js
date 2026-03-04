@@ -3,14 +3,10 @@ var BASE_URL = "https://nettruyen.com.vn";
 function getBookList(page, query) {
     var url = "";
     if (query && query.indexOf("@filter:") !== -1) {
-        var category = query.split("@filter:")[1];
+        var category = query.split("@filter:")[1] || "/";
         if (category.indexOf("/") !== 0) category = "/" + category;
         url = BASE_URL + category;
         if (page > 1) {
-            // Category urls are like /the-loai/tien-hiep.html -> /the-loai/tien-hiep/trang-2.html
-            // Wait, we saw ajax calls for category pages: `ajax.cate.php?trang=2&loai=truyendich&cate=new&theloai=3`.
-            // But directly appending '?trang=2' didn't work in my test.
-            // Oh, look at line 1368: `/the-loai/tien-hiep/trang-{{number}}.html`
             if (url.endsWith(".html")) {
                 url = url.substring(0, url.length - 5) + "/trang-" + page + ".html";
             } else {
