@@ -152,10 +152,10 @@ function getChapterContent(url) {
     var htmlStr = resp.text();
     var doc = Html.parse(htmlStr);
 
-    var contentEl = doc.selectFirst(".box-chap") || doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c");
-    if (!contentEl) return Response.error("Content not found");
-
-    // Clean internal elements before cleaning HTML string
+    var contentEl = doc.selectFirst(".box-chap") || doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c") || doc.selectFirst(".content") || doc.selectFirst(".box-content");
+    if (!contentEl) {
+        return Response.error("Content not found. HTML length: " + (htmlStr ? htmlStr.length : 0));
+    }
     var itemsToRemove = contentEl.select("h2, .chap-name, script, style, .ads-responsive, .premium-note");
     if (itemsToRemove) {
         for (var i = 0; i < itemsToRemove.length; i++) {

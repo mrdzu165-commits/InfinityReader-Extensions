@@ -1,7 +1,7 @@
 {
     "id": "tangthuvien",
     "name": "Tàng Thư Viện",
-    "version": 5,
+    "version": 6,
     "lang": "vi",
     "baseUrl": "https://truyen.tangthuvien.vn",
     "icon": "icon.png",
@@ -10,17 +10,17 @@
     "type": "novel",
     "categories": {
         "Tổng Hợp": "@filter:tong-hop",
-        "Tiên Hiệp": "@filter:tien-hiep",
-        "Huyền Huyễn": "@filter:huyen-huyen",
-        "Đô Thị": "@filter:do-thi",
-        "Khoa Huyễn": "@filter:khoa-huyen",
-        "Kỳ Huyễn": "@filter:ky-huyen",
-        "Võ Hiệp": "@filter:vo-hiep",
-        "Lịch Sử": "@filter:lich-su",
-        "Đồng Nhân": "@filter:dong-nhan",
-        "Quân Sự": "@filter:quan-su",
-        "Du Hý": "@filter:du-hy",
-        "Cạnh Kỹ": "@filter:canh-ky",
-        "Linh Dị": "@filter:linh-di"
+        "Tiên Hiệp": "@filter:the-loai/tien-hiep",
+        "Huyền Huyễn": "@filter:the-loai/huyen-huyen",
+        "Đô Thị": "@filter:the-loai/do-thi",
+        "Khoa Huyễn": "@filter:the-loai/khoa-huyen",
+        "Kỳ Huyễn": "@filter:the-loai/ky-huyen",
+        "Võ Hiệp": "@filter:the-loai/vo-hiep",
+        "Lịch Sử": "@filter:the-loai/lich-su",
+        "Đồng Nhân": "@filter:the-loai/dong-nhan",
+        "Quân Sự": "@filter:the-loai/quan-su",
+        "Du Hý": "@filter:the-loai/du-hi",
+        "Cạnh Kỹ": "@filter:the-loai/canh-ky",
+        "Linh Dị": "@filter:the-loai/linh-di"
     }
 }

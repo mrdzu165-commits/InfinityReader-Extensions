@@ -80,7 +80,7 @@
         {
             "id": "tangthuvien",
             "name": "Tàng Thư Viện",
-            "version": 5,
+            "version": 6,
             "path": "tangthuvien/",
             "categories": {
                 "Tổng Hợp": "@filter:tong-hop",
