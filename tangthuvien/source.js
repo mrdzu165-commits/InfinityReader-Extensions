@@ -37,6 +37,16 @@ function getBookList(page, query) {
         var authorEl = el.selectFirst(".author a.name");
         var author = authorEl ? authorEl.text.trim() : "";
 
+        var authorParentEl = el.selectFirst(".author");
+        var latestChapter = "";
+        if (authorParentEl) {
+            var fullText = authorParentEl.text;
+            var match = fullText.match(/(\d+)\s+chương/i) || fullText.match(/(\d+)\s*chương/i);
+            if (match) {
+                latestChapter = "Chương " + match[1];
+            }
+        }
+
         var coverEl = el.selectFirst(".book-img-box img");
         var cover = "";
         if (coverEl) {
@@ -53,7 +63,8 @@ function getBookList(page, query) {
             title: title,
             author: author,
             coverUrl: cover,
-            url: bookUrl
+            url: bookUrl,
+            latestChapter: latestChapter
         });
     }
     return Response.success(books);
@@ -143,7 +154,7 @@ function getChapterContent(url) {
     htmlStr = htmlStr.replace(/\r?\n/g, "<br />");
     var doc = Html.parse(htmlStr);
 
-    var contentEl = doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c");
+    var contentEl = doc.selectFirst(".box-chap") || doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c");
     if (!contentEl) return Response.error("Content not found");
 
     // Clean internal elements before cleaning HTML string
