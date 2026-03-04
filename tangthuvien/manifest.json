@@ -1,11 +1,11 @@
 {
     "id": "tangthuvien",
     "name": "Tàng Thư Viện",
-    "version": 1,
+    "version": 2,
     "lang": "vi",
-    "baseUrl": "https://tangthuvien.vn",
+    "baseUrl": "https://truyen.tangthuvien.vn",
     "icon": "icon.png",
     "author": "InfinityReader",
-    "description": "Nguồn truyện từ TangThuVien.vn",
+    "description": "Nguồn truyện từ TangThuVien.net",
     "type": "novel"
 }

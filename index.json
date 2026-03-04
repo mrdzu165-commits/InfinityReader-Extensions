@@ -80,8 +80,17 @@
         {
             "id": "tangthuvien",
             "name": "Tàng Thư Viện",
-            "version": 1,
-            "path": "tangthuvien/"
+            "version": 2,
+            "path": "tangthuvien/",
+            "categories": {
+                "Tổng Hợp": "@filter:tong-hop",
+                "Tiên Hiệp": "@filter:the-loai/tien-hiep",
+                "Huyền Huyễn": "@filter:the-loai/huyen-huyen",
+                "Đô Thị": "@filter:the-loai/do-thi",
+                "Khoa Huyễn": "@filter:the-loai/khoa-huyen",
+                "Võ Hiệp": "@filter:the-loai/vo-hiep",
+                "Đồng Nhân": "@filter:the-loai/dong-nhan"
+            }
         },
         {
             "id": "wattpad",
