@@ -150,8 +150,6 @@ function getChapterContent(url) {
     if (!resp.ok) return Response.error("Fetch failed: " + resp.status);
 
     var htmlStr = resp.text();
-    // Keep paragraph breaks
-    htmlStr = htmlStr.replace(/\r?\n/g, "<br />");
     var doc = Html.parse(htmlStr);
 
     var contentEl = doc.selectFirst(".box-chap") || doc.selectFirst(".chapter-c-content") || doc.selectFirst(".chapter-c");
@@ -165,7 +163,11 @@ function getChapterContent(url) {
         }
     }
 
-    var cleaned = Html.clean(contentEl.html);
+    // Keep paragraph breaks by replacing newlines in the content ONLY
+    var contentHtml = contentEl.html;
+    contentHtml = contentHtml.replace(/\r?\n/g, "<br />");
+
+    var cleaned = Html.clean(contentHtml);
 
     if (typeof cleanVietnameseAds === "function") cleaned = cleanVietnameseAds(cleaned);
     if (typeof normalizeText === "function") cleaned = normalizeText(cleaned);

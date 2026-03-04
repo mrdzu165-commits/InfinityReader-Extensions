@@ -1,21 +1,17 @@
-fetch('https://truyen.tangthuvien.vn/doc-truyen/mang-hoang-ky/chuong-1').then(r => r.text()).then(t => {
-    let bodyMatch = t.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-    let body = bodyMatch ? bodyMatch[1] : t;
-    console.log("Length of body:", body.length);
-    let idxx = body.indexOf('box-chap');
-    if (idxx !== -1) {
-        console.log("-- box-chap:");
-        console.log(body.substring(idxx - 50, idxx + 1500));
-    } else {
-        console.log("-- no box-chap");
-        let idx2 = body.indexOf('chapter-c');
-        if (idx2 !== -1) {
-            console.log("-- chapter-c:");
-            console.log(body.substring(idx2 - 150, idx2 + 1500));
-        } else {
-            console.log("-- no chapter-c, searching for content div");
-            let idx3 = body.indexOf('content');
-            if (idx3 !== -1) console.log(body.substring(idx3, idx3 + 500));
-        }
+const fs = require('fs');
+fetch('https://truyen.tangthuvien.vn/doc-truyen/ngu-y-chu-nhan-cua-nang-ta').then(r => r.text()).then(t => {
+    const match = t.match(/href="([^"]+)" title="Đọc truyện"/);
+    if (match) {
+        let chapterUrl = match[1];
+        if (!chapterUrl.startsWith('http')) chapterUrl = 'https://truyen.tangthuvien.vn' + chapterUrl;
+        console.log('Fetching', chapterUrl);
+        fetch(chapterUrl).then(r2 => r2.text()).then(t2 => {
+            let numNewlines = (t2.match(/\n/g) || []).length;
+            console.log("Total newlines:", numNewlines);
+            let idx = t2.indexOf('box-chap');
+            if (idx !== -1) {
+                console.log(t2.substring(idx - 60, idx + 100));
+            }
+        });
     }
 });
