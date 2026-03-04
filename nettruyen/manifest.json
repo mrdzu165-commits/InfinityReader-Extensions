@@ -5,9 +5,9 @@
     "description": "Nguồn truyện nettruyen.com.vn",
     "author": "InfinityReader",
     "icon": "icon.png",
-    "language": "vi",
+    "lang": "vi",
     "type": "novel",
-    "sourceUrl": "https://nettruyen.com.vn",
+    "baseUrl": "https://nettruyen.com.vn",
     "source": "source.js",
     "categories": {
         "Mới Cập Nhật": "",
