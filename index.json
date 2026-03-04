@@ -78,12 +78,6 @@
             "path": "dtruyen/"
         },
         {
-            "id": "truyenhd",
-            "name": "Truyện HD",
-            "version": 1,
-            "path": "truyenhd/"
-        },
-        {
             "id": "wattpad",
             "name": "Wattpad",
             "version": 1,
@@ -101,12 +95,36 @@
             "version": 1,
             "path": "truyenhdv/",
             "categories": {
+                "Ẩm Thực": "@filter:/keyword/am-thuc/",
+                "Bách Hợp": "@filter:/keyword/bach-hop/",
+                "Cận Đại": "@filter:/keyword/can-dai/",
+                "Cổ Đại": "@filter:/keyword/co-dai/",
                 "Đam Mỹ": "@filter:/keyword/dam-my/",
-                "Tiên Hiệp": "@filter:/keyword/tien-hiep/",
+                "Dị Giới": "@filter:/keyword/di-gioi/",
+                "Dị Năng": "@filter:/keyword/di-nang/",
+                "Điền Văn": "@filter:/keyword/dien-van/",
+                "Đô Thị": "@filter:/keyword/do-thi/",
+                "Hài Hước": "@filter:/keyword/hai-huoc/",
+                "Hệ Thống": "@filter:/keyword/he-thong/",
+                "Huyền Huyễn": "@filter:/keyword/huyen-huyen/",
+                "Khoa Huyện": "@filter:/keyword/khoa-huyen/",
+                "Làm Giàu": "@filter:/keyword/lam-giau/",
+                "Làm Ruộng": "@filter:/keyword/lam-ruong/",
+                "Linh Dị": "@filter:/keyword/linh-di/",
+                "Mạt Thế": "@filter:/keyword/mat-the/",
                 "Ngôn Tình": "@filter:/keyword/ngon-tinh/",
-                "Xuyên Không": "@filter:/keyword/xuyen-khong/",
+                "Ngược": "@filter:/keyword/nguoc/",
+                "Nữ Cường": "@filter:/keyword/nu-cuong/",
+                "Nữ Phụ": "@filter:/keyword/nu-phu/",
+                "Showbiz": "@filter:/keyword/showbiz/",
                 "Sủng": "@filter:/keyword/sung/",
-                "Huyền Huyễn": "@filter:/keyword/huyen-huyen/"
+                "Tiên Hiệp": "@filter:/keyword/tien-hiep/",
+                "Trinh Thám": "@filter:/keyword/trinh-tham/",
+                "Trọng Sinh": "@filter:/keyword/trong-sinh/",
+                "Tương Lai": "@filter:/keyword/tuong-lai/",
+                "Vườn Trường": "@filter:/keyword/vuon-truong/",
+                "Xuyên Không": "@filter:/keyword/xuyen-khong/",
+                "Xuyên Nhanh": "@filter:/keyword/xuyen-nhanh/"
             }
         }
     ]

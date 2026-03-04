@@ -49,15 +49,18 @@ function getBookList(page, query) {
             if (!titleEl) continue;
 
             var title = titleEl.text.trim();
-            var bookUrl = titleEl.href;
-            if (bookUrl && bookUrl.indexOf("http") !== 0) bookUrl = BASE_URL + bookUrl;
+            var bookUrl = titleEl.attr("href");
+            if (bookUrl && bookUrl.indexOf("http") !== 0) {
+                if (bookUrl.indexOf("/") !== 0) bookUrl = "/" + bookUrl;
+                bookUrl = BASE_URL + bookUrl;
+            }
 
             var coverEl = el.selectFirst("img");
             var cover = "";
             if (coverEl) {
                 cover = coverEl.attr("data-src") || coverEl.attr("src");
                 if (cover && cover.indexOf("//") === 0) cover = "https:" + cover;
-                if (cover && cover.indexOf("/") === 0) cover = BASE_URL + cover;
+                if (cover && cover.indexOf("/") === 0 && cover.indexOf("//") !== 0) cover = BASE_URL + cover;
             }
 
             var id = bookUrl;
@@ -77,7 +80,10 @@ function getBookList(page, query) {
 }
 
 function getBookDetails(id) {
-    if (id.indexOf("http") !== 0) id = BASE_URL + id;
+    if (id.indexOf("http") !== 0) {
+        if (id.indexOf("/") !== 0) id = "/" + id;
+        id = BASE_URL + id;
+    }
     var resp = fetch(id);
     if (!resp.ok) return Response.error("Fetch failed: " + resp.status);
 
@@ -91,11 +97,11 @@ function getBookDetails(id) {
     if (coverEl) {
         cover = coverEl.attr("data-src") || coverEl.attr("src");
         if (cover && cover.indexOf("//") === 0) cover = "https:" + cover;
-        if (cover && cover.indexOf("/") === 0) cover = BASE_URL + cover;
+        if (cover && cover.indexOf("/") === 0 && cover.indexOf("//") !== 0) cover = BASE_URL + cover;
     }
 
     var descEl = doc.selectFirst(".excerpt-full, .excerpt-collapse, .keywords");
-    var description = descEl ? descEl.html() : "";
+    var description = descEl ? Html.clean(descEl.html) : "";
 
     var titleTag = doc.selectFirst("title");
     var fullTitle = titleTag ? titleTag.text : "";
@@ -125,7 +131,7 @@ function getBookDetails(id) {
                 var bookSlug = id.split("/").filter(Boolean).pop();
                 chapters = chapJson.map(function (c) {
                     return {
-                        name: c.post_title,
+                        title: c.post_title,
                         url: "/truyen/" + bookSlug + "/chap/" + c.post_name + "/"
                     };
                 });
@@ -143,7 +149,10 @@ function getBookDetails(id) {
 }
 
 function getChapterContent(url) {
-    if (url.indexOf("http") !== 0) url = BASE_URL + url;
+    if (url.indexOf("http") !== 0) {
+        if (url.indexOf("/") !== 0) url = "/" + url;
+        url = BASE_URL + url;
+    }
     var resp = fetch(url);
     if (!resp.ok) return Response.error("Fetch failed: " + resp.status);
 
@@ -154,11 +163,19 @@ function getChapterContent(url) {
     if (!content) return Response.error("Content not found");
 
     var ads = content.select(".ads-content-1, .ads-content-2, .ads-content-3, script, style");
-    for (var i = 0; i < ads.length; i++) {
-        ads[i].remove();
+    if (ads) {
+        for (var i = 0; i < ads.length; i++) {
+            ads[i].remove();
+        }
     }
 
+    var cleaned = Html.clean(content.html);
+
+    // Use helper functions from base.js if they exist in context
+    if (typeof cleanVietnameseAds === "function") cleaned = cleanVietnameseAds(cleaned);
+    if (typeof normalizeText === "function") cleaned = normalizeText(cleaned);
+
     return Response.success({
-        content: content.html()
+        content: cleaned
     });
 }
