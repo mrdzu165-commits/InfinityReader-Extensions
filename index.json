@@ -1,108 +1,16 @@
 {
     "extensions": [
         {
-            "id": "truyenfull",
-            "name": "Truyện Full",
-            "version": 1,
-            "path": "truyenfull/"
-        },
-        {
-            "id": "sstruyen",
-            "name": "SSTruyện",
-            "version": 1,
-            "path": "sstruyen/",
-            "categories": {
-                "Truyện Hot": "@filter:danh-sach/truyen-hot",
-                "Truyện Full": "@filter:danh-sach/truyen-full",
-                "Ngôn Tình Hay": "@filter:danh-sach/truyen-ngon-tinh-hay",
-                "Ngôn Tình Ngắn": "@filter:danh-sach/truyen-ngon-tinh-ngan",
-                "Ngôn Tình 18+": "@filter:danh-sach/truyen-ngon-tinh-18",
-                "Ngôn Tình Hoàn": "@filter:danh-sach/truyen-ngon-tinh-hoan",
-                "Ngôn Tình Ngược": "@filter:danh-sach/truyen-ngon-tinh-nguoc",
-                "Ngôn Tình Sủng": "@filter:danh-sach/truyen-ngon-tinh-sung",
-                "Ngôn Tình Hài": "@filter:danh-sach/truyen-ngon-tinh-hai-huoc",
-                "Ngôn Tình Sắc": "@filter:danh-sach/truyen-ngon-tinh-sac",
-                "Đam Mỹ Hay": "@filter:danh-sach/truyen-dam-my-hay",
-                "Đam Mỹ Hài": "@filter:danh-sach/truyen-dam-my-hai",
-                "Đam Mỹ H": "@filter:danh-sach/truyen-dam-my-h",
-                "Truyện Teen Hay": "@filter:danh-sach/truyen-teen-hay",
-                "Kiếm Hiệp Hay": "@filter:danh-sach/truyen-kiem-hiep-hay",
-                "Tiên Hiệp Hay": "@filter:danh-sach/truyen-tien-hiep-hay",
-                "Tiên Hiệp": "@filter:the-loai/tien-hiep",
-                "Kiếm Hiệp": "@filter:the-loai/kiem-hiep",
-                "Ngôn Tình": "@filter:the-loai/ngon-tinh",
-                "Đam Mỹ": "@filter:the-loai/dam-my",
-                "Bách Hợp": "@filter:the-loai/bach-hop",
-                "Quan Trường": "@filter:the-loai/quan-truong",
-                "Võng Du": "@filter:the-loai/vong-du",
-                "Khoa Huyễn": "@filter:the-loai/khoa-huyen",
-                "Hệ Thống": "@filter:the-loai/he-thong",
-                "Huyền Huyễn": "@filter:the-loai/huyen-huyen",
-                "Dị Giới": "@filter:the-loai/di-gioi",
-                "Dị Năng": "@filter:the-loai/di-nang",
-                "Quân Sự": "@filter:the-loai/quan-su",
-                "Lịch Sử": "@filter:the-loai/lich-su",
-                "Xuyên Không": "@filter:the-loai/xuyen-khong",
-                "Xuyên Nhanh": "@filter:the-loai/xuyen-nhanh",
-                "Trọng Sinh": "@filter:the-loai/trong-sinh",
-                "Trinh Thám": "@filter:the-loai/trinh-tham",
-                "Linh Dị": "@filter:the-loai/linh-di",
-                "Ngược": "@filter:the-loai/nguoc",
-                "Sắc": "@filter:the-loai/sac",
-                "Sủng": "@filter:the-loai/sung",
-                "Cung Đấu": "@filter:the-loai/cung-dau",
-                "Nữ Cường": "@filter:the-loai/nu-cuong",
-                "Gia Đấu": "@filter:the-loai/gia-dau",
-                "Đông Phương": "@filter:the-loai/dong-phuong",
-                "Đô Thị": "@filter:the-loai/do-thi",
-                "Điền Văn": "@filter:the-loai/dien-van",
-                "Mạt Thế": "@filter:the-loai/mat-the",
-                "Truyện Teen": "@filter:the-loai/truyen-teen",
-                "Nữ Phụ": "@filter:the-loai/nu-phu",
-                "Light Novel": "@filter:the-loai/light-novel",
-                "Đoản Văn": "@filter:the-loai/doan-van",
-                "Hiện đại": "@filter:the-loai/hien-dai",
-                "Khác": "@filter:the-loai/khac"
-            }
-        },
-        {
-            "id": "truyenchu",
-            "name": "Truyện Chữ",
-            "version": 1,
-            "path": "truyenchu/"
-        },
-        {
             "id": "dtruyen",
             "name": "DTruyen",
-            "version": 1,
+            "version": 3,
             "path": "dtruyen/"
         },
         {
-            "id": "tangthuvien",
-            "name": "Tàng Thư Viện",
-            "version": 6,
-            "path": "tangthuvien/",
-            "categories": {
-                "Tổng Hợp": "@filter:tong-hop",
-                "Tiên Hiệp": "@filter:tien-hiep",
-                "Huyền Huyễn": "@filter:huyen-huyen",
-                "Đô Thị": "@filter:do-thi",
-                "Khoa Huyễn": "@filter:khoa-huyen",
-                "Kỳ Huyễn": "@filter:ky-huyen",
-                "Võ Hiệp": "@filter:vo-hiep",
-                "Lịch Sử": "@filter:lich-su",
-                "Đồng Nhân": "@filter:dong-nhan",
-                "Quân Sự": "@filter:quan-su",
-                "Du Hý": "@filter:du-hy",
-                "Cạnh Kỹ": "@filter:canh-ky",
-                "Linh Dị": "@filter:linh-di"
-            }
-        },
-        {
-            "id": "wattpad",
-            "name": "Wattpad",
-            "version": 1,
-            "path": "wattpad/"
+            "id": "nettruyen",
+            "name": "NetTruyen",
+            "version": 3,
+            "path": "nettruyen/"
         },
         {
             "id": "sangtacviet",
@@ -111,48 +19,40 @@
             "path": "sangtacviet/"
         },
         {
+            "id": "sstruyen",
+            "name": "SSTruyện",
+            "version": 2,
+            "path": "sstruyen/"
+        },
+        {
+            "id": "tangthuvien",
+            "name": "Tàng Thư Viện",
+            "version": 6,
+            "path": "tangthuvien/"
+        },
+        {
+            "id": "truyenchu",
+            "name": "Truyện Chữ",
+            "version": 1,
+            "path": "truyenchu/"
+        },
+        {
+            "id": "truyenfull",
+            "name": "Truyện Full",
+            "version": 2,
+            "path": "truyenfull/"
+        },
+        {
             "id": "truyenhdv",
             "name": "Truyện HDV",
             "version": 3,
-            "path": "truyenhdv/",
-            "categories": {
-                "Ẩm Thực": "@filter:keyword/am-thuc/",
-                "Bách Hợp": "@filter:keyword/bach-hop/",
-                "Cận Đại": "@filter:keyword/can-dai/",
-                "Cổ Đại": "@filter:keyword/co-dai/",
-                "Đam Mỹ": "@filter:keyword/dam-my/",
-                "Dị Giới": "@filter:keyword/di-gioi/",
-                "Dị Năng": "@filter:keyword/di-nang/",
-                "Điền Văn": "@filter:keyword/dien-van/",
-                "Đô Thị": "@filter:keyword/do-thi/",
-                "Hài Hước": "@filter:keyword/hai-huoc/",
-                "Hệ Thống": "@filter:keyword/he-thong/",
-                "Huyền Huyễn": "@filter:keyword/huyen-huyen/",
-                "Khoa Huyện": "@filter:keyword/khoa-huyen/",
-                "Làm Giàu": "@filter:keyword/lam-giau/",
-                "Làm Ruộng": "@filter:keyword/lam-ruong/",
-                "Linh Dị": "@filter:keyword/linh-di/",
-                "Mạt Thế": "@filter:keyword/mat-the/",
-                "Ngôn Tình": "@filter:keyword/ngon-tinh/",
-                "Ngược": "@filter:keyword/nguoc/",
-                "Nữ Cường": "@filter:keyword/nu-cuong/",
-                "Nữ Phụ": "@filter:keyword/nu-phu/",
-                "Showbiz": "@filter:keyword/showbiz/",
-                "Sủng": "@filter:keyword/sung/",
-                "Tiên Hiệp": "@filter:keyword/tien-hiep/",
-                "Trinh Thám": "@filter:keyword/trinh-tham/",
-                "Trọng Sinh": "@filter:keyword/trong-sinh/",
-                "Tương Lai": "@filter:keyword/tuong-lai/",
-                "Vườn Trường": "@filter:keyword/vuon-truong/",
-                "Xuyên Không": "@filter:keyword/xuyen-khong/",
-                "Xuyên Nhanh": "@filter:keyword/xuyen-nhanh/"
-            }
+            "path": "truyenhdv/"
         },
         {
-            "id": "nettruyen",
-            "name": "NetTruyen",
-            "version": 3,
-            "path": "nettruyen/"
+            "id": "wattpad",
+            "name": "Wattpad",
+            "version": 1,
+            "path": "wattpad/"
         }
     ]
 }
